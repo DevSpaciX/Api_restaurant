@@ -8,29 +8,39 @@ class MenuSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Menu
-        fields = ("__all__")
+        fields = ["drink", "main_dish", "dessert", "daily_menu", "restaurant"]
 
 
 class MenuForRestaurantSerializer(MenuSerializer):
-    daily_menu = serializers.CharField(source='get_daily_menu_display')
-
+    daily_menu = serializers.CharField(source="get_daily_menu_display")
 
 
 class MenuListSerializer(MenuSerializer):
     restaurant = serializers.SerializerMethodField()
-    daily_menu = serializers.CharField(source='get_daily_menu_display')
+    daily_menu = serializers.CharField(source="get_daily_menu_display")
 
     def get_restaurant(self, obj):
         if obj.restaurant:
             return obj.restaurant.name
         return None
 
+    class Meta:
+        model = Menu
+        fields = [
+            "drink",
+            "main_dish",
+            "dessert",
+            "daily_menu",
+            "restaurant",
+            "daily_menu",
+            "price",
+        ]
+
 
 class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
-        fields = ["name","address"]
-
+        fields = ["name", "address"]
 
 
 class RestaurantListSerializer(serializers.ModelSerializer):
@@ -38,12 +48,12 @@ class RestaurantListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Restaurant
-        fields = ["name","address","menu"]
+        fields = ["name", "address", "menu"]
 
 
 class VoteListSerializer(MenuSerializer):
     restaurant = serializers.SerializerMethodField()
-    daily_menu = serializers.CharField(source='get_daily_menu_display')
+    daily_menu = serializers.CharField(source="get_daily_menu_display")
     vote = serializers.IntegerField(source="restaurant.votes")
 
     def get_restaurant(self, obj):
@@ -53,7 +63,7 @@ class VoteListSerializer(MenuSerializer):
 
     class Meta:
         model = Menu
-        fields = ["restaurant","vote","drink","main_dish","dessert","price"]
+        fields = ["restaurant", "vote", "drink", "main_dish", "dessert", "price"]
 
 
 class VoteSerializer(MenuSerializer):
@@ -61,4 +71,4 @@ class VoteSerializer(MenuSerializer):
 
     class Meta:
         model = Menu
-        fields = ["restaurant","vote"]
+        fields = ["restaurant", "vote"]

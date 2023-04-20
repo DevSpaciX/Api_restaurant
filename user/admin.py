@@ -2,10 +2,10 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.utils.translation import gettext as _
 
-from .models import User
+from .models import Employee
 
 
-@admin.register(User)
+@admin.register(Employee)
 class UserAdmin(DjangoUserAdmin):
     """Define admin model for custom User model with no email field."""
 
