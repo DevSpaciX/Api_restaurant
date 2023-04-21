@@ -2,7 +2,12 @@ import datetime
 from typing import List
 
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import IsAuthenticated, BasePermission, AllowAny, IsAdminUser
+from rest_framework.permissions import (
+    IsAuthenticated,
+    BasePermission,
+    AllowAny,
+    IsAdminUser,
+)
 from restaurant.models import Restaurant, Menu
 from restaurant.serializers import (
     RestaurantSerializer,
@@ -30,15 +35,14 @@ class RestaurantViewSet(ModelViewSet):
         if self.action in ["list", "retrieve"]:
             permission_classes = [AllowAny]
         else:
-            permission_classes = [IsAdminUser,IsAuthenticated]
+            permission_classes = [IsAdminUser, IsAuthenticated]
         return [permission() for permission in permission_classes]
 
 
 class MenuViewSet(ModelViewSet):
-    """"""
+
     serializer_class = MenuSerializer
     queryset = Menu.objects.all()
-
 
     def get_serializer_class(self):
         if self.action == "list":
@@ -48,10 +52,10 @@ class MenuViewSet(ModelViewSet):
         return MenuSerializer
 
     def get_permissions(self) -> List[BasePermission]:
-        if self.action in ["list","retrieve","today_results"]:
+        if self.action in ["list", "retrieve", "today_results"]:
             permission_classes = [AllowAny]
         else:
-            permission_classes = [IsAdminUser,IsAuthenticated]
+            permission_classes = [IsAdminUser, IsAuthenticated]
         return [permission() for permission in permission_classes]
 
     @action(
@@ -69,9 +73,7 @@ class MenuViewSet(ModelViewSet):
 
             return Response(serializer.data)
         elif request.method == "POST":
-            serializer = VoteSerializer(
-                data=request.data
-            )
+            serializer = VoteSerializer(data=request.data)
             if serializer.is_valid():
 
                 restaurant = Restaurant.objects.get(

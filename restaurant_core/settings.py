@@ -13,6 +13,7 @@ import os
 from datetime import timedelta
 from pathlib import Path
 from celery.schedules import crontab
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -160,6 +161,6 @@ CELERY_IMPORTS = [
 CELERY_BEAT_SCHEDULE = {
     "clear_votes_and_users": {
         "task": "restaurant.tasks.clear_votes_and_users",
-        "schedule": crontab('*/5'),
+        "schedule": crontab("*/5"),
     },
 }

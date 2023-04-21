@@ -5,6 +5,7 @@ import datetime
 from restaurant.models import Menu
 from restaurant.models import Restaurant
 
+
 @shared_task
 def clear_votes_and_users():
     now = datetime.datetime.now()

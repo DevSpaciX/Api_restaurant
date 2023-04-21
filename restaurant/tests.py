@@ -16,8 +16,12 @@ from django.urls import reverse
 class RestaurantViewSetTestCase(TestCase):
     def setUp(self):
         self.factory = APIRequestFactory()
-        self.restaurant = Restaurant.objects.create(name="Test Restaurant", address="Test Location")
-        self.user = Employee.objects.create_user(email="testuser@mail.com", password="testpassword")
+        self.restaurant = Restaurant.objects.create(
+            name="Test Restaurant", address="Test Location"
+        )
+        self.user = Employee.objects.create_user(
+            email="testuser@mail.com", password="testpassword"
+        )
 
     def test_get_serializer_class_list_action(self):
         view = RestaurantViewSet()
@@ -35,18 +39,23 @@ class RestaurantViewSetTestCase(TestCase):
         view = RestaurantViewSet()
         view.action = "list"
         permissions = view.get_permissions()
-        self.assertTrue(any(isinstance(permission, AllowAny) for permission in permissions))
+        self.assertTrue(
+            any(isinstance(permission, AllowAny) for permission in permissions)
+        )
 
         view.action = "retrieve"
         permissions = view.get_permissions()
-        self.assertTrue(any(isinstance(permission, AllowAny) for permission in permissions))
+        self.assertTrue(
+            any(isinstance(permission, AllowAny) for permission in permissions)
+        )
 
     def test_get_permissions_other_actions(self):
         view = RestaurantViewSet()
         view.action = "create"
         permissions = view.get_permissions()
-        self.assertTrue(any(isinstance(permission, IsAuthenticated) for permission in permissions))
-
+        self.assertTrue(
+            any(isinstance(permission, IsAuthenticated) for permission in permissions)
+        )
 
     def test_restaurant_list_viewset(self):
         view = RestaurantViewSet.as_view({"get": "list"})
@@ -56,13 +65,17 @@ class RestaurantViewSetTestCase(TestCase):
 
     def test_restaurant_create_viewset_unauthenticated(self):
         view = RestaurantViewSet.as_view({"post": "create"})
-        request = self.factory.post("/restaurants/", data={"name": "New Restaurant", "address": "New Location"})
+        request = self.factory.post(
+            "/restaurants/", data={"name": "New Restaurant", "address": "New Location"}
+        )
         response = view(request)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_restaurant_create_viewset_authenticated(self):
         view = RestaurantViewSet.as_view({"post": "create"})
-        request = self.factory.post("/restaurants/", data={"name": "New Restaurant", "address": "New Location"})
+        request = self.factory.post(
+            "/restaurants/", data={"name": "New Restaurant", "address": "New Location"}
+        )
         force_authenticate(request, user=self.user)
         response = view(request)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
