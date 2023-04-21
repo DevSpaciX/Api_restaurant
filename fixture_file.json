@@ -1,0 +1,107 @@
+[
+{
+    "model": "user.employee",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$IltsPV038jM79FdZSqy6D7$IupVmGcWLbMQ1JOM5slpiE11m0ylATOdmjApdQHwi+c=",
+        "last_login": "2023-04-21T04:34:59.754Z",
+        "is_superuser": true,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2023-04-21T04:34:40.436Z",
+        "email": "admin@admin.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "restaurant.restaurant",
+    "pk": 1,
+    "fields": {
+        "name": "Macdonald`s",
+        "address": "Lvivska 12",
+        "votes": 0
+    }
+},
+{
+    "model": "restaurant.restaurant",
+    "pk": 2,
+    "fields": {
+        "name": "KFC",
+        "address": "Shevchenka 12",
+        "votes": 0
+    }
+},
+{
+    "model": "restaurant.restaurant",
+    "pk": 3,
+    "fields": {
+        "name": "Burgers PREMIUM",
+        "address": "Lvivska 1",
+        "votes": 0
+    }
+},
+{
+    "model": "restaurant.restaurant",
+    "pk": 4,
+    "fields": {
+        "name": "Holodniy Mukola",
+        "address": "Shevchenka 1",
+        "votes": 0
+    }
+},
+{
+    "model": "restaurant.menu",
+    "pk": 1,
+    "fields": {
+        "daily_menu": 4,
+        "drink": "Tea",
+        "main_dish": "Fork",
+        "dessert": "Cacke",
+        "price": 123,
+        "restaurant": 1,
+        "users_voted": []
+    }
+},
+{
+    "model": "restaurant.menu",
+    "pk": 2,
+    "fields": {
+        "daily_menu": 4,
+        "drink": "Cola",
+        "main_dish": "Potato",
+        "dessert": "Chocolate Cacke",
+        "price": 34,
+        "restaurant": 2,
+        "users_voted": []
+    }
+},
+{
+    "model": "restaurant.menu",
+    "pk": 3,
+    "fields": {
+        "daily_menu": 4,
+        "drink": "Sprite",
+        "main_dish": "Buggette",
+        "dessert": "Chocolate Cacke XXL",
+        "price": 233,
+        "restaurant": 3,
+        "users_voted": []
+    }
+},
+{
+    "model": "restaurant.menu",
+    "pk": 4,
+    "fields": {
+        "daily_menu": 4,
+        "drink": "Coffee Latte",
+        "main_dish": "Corn",
+        "dessert": "Sweets",
+        "price": 300,
+        "restaurant": 4,
+        "users_voted": []
+    }
+}
+]

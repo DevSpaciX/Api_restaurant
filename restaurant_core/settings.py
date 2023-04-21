@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-g=3iyqm5%(m66(%d26m-blu+f_q&+0t4h7$+j-c#7t9e9$$=%-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["0.0.0.0"]
 
 
 # Application definition
@@ -87,6 +87,13 @@ DATABASES = {
         "PASSWORD": os.environ["POSTGRES_PASSWORD"],
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
 
 
 # Password validation
@@ -152,7 +159,7 @@ CELERY_IMPORTS = [
 ]
 CELERY_BEAT_SCHEDULE = {
     "clear_votes_and_users": {
-        "task": "restaurant.tasks.send_overdue_book_returns",
-        "schedule": crontab(),  # Run every day at midnight
+        "task": "restaurant.tasks.clear_votes_and_users",
+        "schedule": crontab('*/5'),  # Run every day at midnight
     },
 }
