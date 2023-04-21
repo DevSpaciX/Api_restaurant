@@ -39,7 +39,7 @@
 - [GET] /api/restaurants/{id}   (detail info about restaurant)
 - [PUT] /api/restaurants/{id}   (update all borrow restaurants)
 - [PATCH] /api/restaurants/{id}   (partial update of restaurants instance)
-- [DELETE] /api/restaurants/{id}   (delete borrow with chosen id)
+- [DELETE] /api/restaurants/{id}   (delete restaurant with chosen id)
 
 ## Installing using GitHub:
 ```python
