@@ -160,6 +160,6 @@ CELERY_IMPORTS = [
 CELERY_BEAT_SCHEDULE = {
     "clear_votes_and_users": {
         "task": "restaurant.tasks.clear_votes_and_users",
-        "schedule": crontab('*/5'),  # Run every day at midnight
+        "schedule": crontab('*/5'),
     },
 }
